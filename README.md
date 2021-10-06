@@ -29,7 +29,7 @@ $ gcloud compute instances create $dev_vm_name \
  --zone=asia-southeast1-b \
  --machine-type=n1-standard-1 \
  --preemptible \
- --image=ubuntu-1804-bionic-v20200716 \
+ --image=ubuntu-1804-bionic-v20210928 \
  --image-project=ubuntu-os-cloud \
  --boot-disk-size=10GB \
  --boot-disk-type=pd-standard \
