@@ -26,12 +26,13 @@ $ gcloud compute instances create $dev_vm_name \
  --image-project=ubuntu-os-cloud \
  --boot-disk-size=10GB \
  --boot-disk-type=pd-standard \
- --boot-disk-device-name=tutorial-dev-vm \
+ --boot-disk-device-name=$dev_vm_name \
  --metadata-from-file startup-script=tutorial-dev-machine.sh \
  --network-tier=STANDARD \
  --subnet=default \
  --tags=http-server,https-server \
- --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0
+ --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0 \
+ --no-boot-disk-auto-delete
 ```
 ### Option 2: create the Virtual Machine with static IP 
 - Find the reserved IP address that you have created for that VM and store it in a variable.
@@ -52,13 +53,14 @@ $ gcloud compute instances create $dev_vm_name \
  --image-project=ubuntu-os-cloud \
  --boot-disk-size=10GB \
  --boot-disk-type=pd-standard \
- --boot-disk-device-name=tutorial-dev-vm \
+ --boot-disk-device-name=$dev_vm_name \
  --metadata-from-file startup-script=tutorial-dev-machine.sh \
  --network-tier=STANDARD \
  --address=$IP_ADDRESS_DEV_MACHINE \
  --subnet=default \
  --tags=http-server,https-server \
- --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0
+ --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0 \
+ --no-boot-disk-auto-delete
 ```
 ## setup remote connection by hitting below on local chrome browser
 - https://remotedesktop.google.com/headless
