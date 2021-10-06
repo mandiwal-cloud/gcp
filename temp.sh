@@ -1,2 +1,3 @@
 #!/bin/sh
-echo hello $1
+dev_vm_name=$1
+echo hello $dev_vm_name
