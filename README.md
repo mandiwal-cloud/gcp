@@ -15,7 +15,7 @@ $ dev_vm_name=lucky
 $ wget -O tutorial-dev-machine.sh https://raw.githubusercontent.com/mandiwal-cloud/gcp/main/tutorial-dev-machine.sh
 
 ```
-- Option 1: create the Virtual Machine without static IP 
+### Option 1: create the Virtual Machine without static IP 
 ```
 $ gcloud compute instances create $dev_vm_name \
  --project=$GOOGLE_CLOUD_PROJECT \
@@ -33,15 +33,15 @@ $ gcloud compute instances create $dev_vm_name \
  --tags=http-server,https-server \
  --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0
 ```
-- Option 2: create the Virtual Machine with static IP 
--- Find the reserved IP address that you have created for that VM and store it in a variable.
+### Option 2: create the Virtual Machine with static IP 
+- Find the reserved IP address that you have created for that VM and store it in a variable.
 ```
 $ IP_ADDRESS_DEV_MACHINE=$(gcloud compute addresses list \
  --filter="name:$dev_vm_name-ip AND region:asia-southeast1" \
  --format="value(address_range())"
  )
 ```
--- create the Virtual Machine with static ip
+- create the Virtual Machine with static ip
 ```
 $ gcloud compute instances create $dev_vm_name \
  --project=$GOOGLE_CLOUD_PROJECT \
