@@ -13,6 +13,7 @@ $ bash <(curl -s https://raw.githubusercontent.com/mandiwal-cloud/gcp/main/proje
 $ gcloud config set project <project-id>
 $ dev_vm_name=lucky	
 $ wget -O tutorial-dev-machine.sh https://raw.githubusercontent.com/mandiwal-cloud/gcp/main/tutorial-dev-machine.sh
+
 ```
 - Find the reserved IP address that you have created for that VM and store it in a variable.
 ```
