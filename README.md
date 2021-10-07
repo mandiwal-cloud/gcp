@@ -15,7 +15,7 @@ $ dev_vm_name=lucky
 $ wget -O tutorial-dev-machine.sh https://raw.githubusercontent.com/mandiwal-cloud/gcp/main/tutorial-dev-machine.sh
 
 ```
-### Option 1: create the Virtual Machine without static IP 
+### Option 1: create the Virtual Machine (cheapest dev box) without static IP 
 ```
 $ gcloud compute instances create $dev_vm_name \
  --project=$GOOGLE_CLOUD_PROJECT \
@@ -42,7 +42,7 @@ $ IP_ADDRESS_DEV_MACHINE=$(gcloud compute addresses list \
  --format="value(address_range())"
  )
 ```
-- create the Virtual Machine with static ip
+- create the Virtual Machine (cheapest dev box) with static ip
 ```
 $ gcloud compute instances create $dev_vm_name \
  --project=$GOOGLE_CLOUD_PROJECT \
@@ -73,4 +73,56 @@ $ gcloud config set project <project-id>
 $ dev_vm_name=lucky
 $ gcloud compute instances delete $dev_vm_name \
  --zone=asia-southeast1-b
+ ```
+
+ ## create machine with minikube
+ - create instance with 2 cpus and 20gb disk
+ ```
+$ dev_vm_name=lucky	
+$ gcloud compute instances create $dev_vm_name \
+ --project=$GOOGLE_CLOUD_PROJECT \
+ --zone=asia-southeast1-b \
+ --machine-type=n1-standard-2 \
+ --preemptible \
+ --image=ubuntu-1804-bionic-v20210928 \
+ --image-project=ubuntu-os-cloud \
+ --boot-disk-size=20GB \
+ --boot-disk-type=pd-standard \
+ --boot-disk-device-name=$dev_vm_name \
+ --metadata-from-file startup-script=tutorial-dev-machine.sh \
+ --network-tier=STANDARD \
+ --address=$IP_ADDRESS_DEV_MACHINE \
+ --subnet=default \
+ --tags=http-server,https-server \
+ --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0 \
+ --no-boot-disk-auto-delete
+ ```
+ - ssh to the box
+ - run all the steps from the below script manually on the box (script is not working but indivudual steps are working)
+ - https://raw.githubusercontent.com/mandiwal-cloud/gcp/main/install-docker-k8s.sh
+ 
+ ## create machine with minikube second time if above machine was deleted (disk was not deleted when vm was deleted)
+ ```
+$ dev_vm_name=lucky	
+$ gcloud compute instances create $dev_vm_name \
+ --project=$GOOGLE_CLOUD_PROJECT \
+ --zone=asia-southeast1-b \
+ --machine-type=n1-standard-2 \
+ --preemptible \
+ --image=ubuntu-1804-bionic-v20210928 \
+ --image-project=ubuntu-os-cloud \
+ --boot-disk-size=20GB \
+ --boot-disk-type=pd-standard \
+ --boot-disk-device-name=$dev_vm_name \
+ --metadata-from-file startup-script=tutorial-dev-machine.sh \
+ --network-tier=STANDARD \
+ --address=$IP_ADDRESS_DEV_MACHINE \
+ --subnet=default \
+ --tags=http-server,https-server \
+ --labels=os=ubuntu-18-04-lts,cost-alloc=tutorials,usage=golang,configuration=v1-1-0 \
+ --no-boot-disk-auto-delete
+ ```
+ - ssh to the box and run below command
+ ```
+minikube start
  ```

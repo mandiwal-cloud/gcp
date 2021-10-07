@@ -13,7 +13,7 @@ sudo apt-get update
 sudo apt install docker-ce -y
 sudo systemctl status docker --no-pager
 sudo usermod -a -G docker $USER
-#newgrp docker
+newgrp docker
 docker version
 docker run hello-world
 
