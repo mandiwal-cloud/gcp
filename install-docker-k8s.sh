@@ -13,7 +13,7 @@ sudo apt-get update
 sudo apt install docker-ce -y
 sudo systemctl status docker --no-pager
 sudo usermod -a -G docker $USER
-newgrp docker
+#newgrp docker
 docker version
 docker run hello-world
 
@@ -34,5 +34,5 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s http
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 kubectl version -o yaml
-# minikube start --driver=docker
+minikube start --driver=docker
 
