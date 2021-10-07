@@ -11,7 +11,7 @@ $(lsb_release -cs) stable"
 
 sudo apt-get update
 sudo apt install docker-ce -y
-sudo systemctl status docker
+sudo systemctl status docker --no-pager
 sudo usermod -a -G docker $USER
 newgrp docker
 docker version
