@@ -76,3 +76,6 @@ rm awscliv2.zip
 
 # Install Visual Studio Code
 sudo snap install --classic code
+
+#install maven
+sudo apt install maven
