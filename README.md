@@ -126,3 +126,9 @@ $ gcloud compute instances create $dev_vm_name \
  ```
 minikube start
  ```
+ - give root privileges to the user to use sudo without password
+ ```
+ sudo visudo
+ # add below in the opened file (username should be your username)
+ username     ALL=(ALL) NOPASSWD:ALL
+ ```
