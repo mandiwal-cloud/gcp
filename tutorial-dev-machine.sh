@@ -79,3 +79,6 @@ sudo snap install --classic code
 
 #install maven
 sudo apt install maven
+
+# install postman
+sudo snap install postman
